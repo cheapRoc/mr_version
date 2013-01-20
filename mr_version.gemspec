@@ -4,7 +4,7 @@ require "mr_version"
 
 Gem::Specification.new do |s|
   s.name          = "mr_version"
-  s.version       = Version::VERSION.to_s
+  s.version       = MrVersion::VERSION.to_s
   s.platform      = Gem::Platform::RUBY
   s.summary       = "Stupid simple Ruby software versioning"
   s.homepage      = "http://github.com/cheapRoc/mr_version"
@@ -30,6 +30,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency "bundler", "~> 1.0"
   s.add_development_dependency "bacon"
   s.add_development_dependency "facon"
+  s.add_development_dependency "simple_cov"
+  s.add_development_dependency "autotest"
+  s.add_development_dependency "autotest-fsevent"
 
   s.description = <<-DESC
   Stupid simple Ruby software versioning for your projects.

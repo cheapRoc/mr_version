@@ -17,6 +17,10 @@ Features
 Examples
 --------
 
+    require 'mr_version'
+
+    version = Version.new Rails.root.join('version.yml')
+
     Version.number == "2.0.3"
     Version.append << "rel_"
     Version.prepend << " by cheapRoc"
@@ -30,7 +34,7 @@ Examples
 Install
 -------
 
-gem install mr_version
+```gem install mr_version``` or ```gem "mr_version"```
 
 Author
 ------
@@ -60,3 +64,6 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+In other words, don't be a dick. Give attribution where appropriate.
+It'll be much appreciated.

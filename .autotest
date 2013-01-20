@@ -1,0 +1,20 @@
+require 'autotest-fsevent'
+
+class Autotest
+  def get_to_green
+    begin
+      rerun_all_tests
+      wait_for_changes unless all_good
+    end until all_good
+  end
+end                            
+
+Autotest.add_hook :initialize do |at|
+  at.add_mapping(/^lib\/mr_version\.rb$/, true) do  |filename, _|
+    at.files_matching /^spec\/.*_spec\.rb$/
+  end
+
+  %w{ .git .svn .hg .DS_Store ._* vendor tmp log doc }.each do |exception|
+    at.add_exception(exception)
+  end
+end

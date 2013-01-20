@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'simplecov'
+require 'simple_cov'
 
 SimpleCov.start do
   add_group 'Libraries', 'lib'
@@ -13,13 +12,12 @@ $:.unshift $root.to_s
 $:.unshift $root.parent.join('lib').to_s
 
 require 'bacon'
-require 'mocha'
+require 'facon'
 require 'mr_version'
 
 module SpecHelpers
 end
 
-# Bacon::Context.instance_methods.include?(:capture) ||
-Bacon::Context.send(:include, SpecHelpers)
+Bacon::Context.send :include, SpecHelpers
 
 puts Bacon.summary_on_exit
