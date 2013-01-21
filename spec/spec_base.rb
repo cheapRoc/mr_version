@@ -16,6 +16,15 @@ require 'facon'
 require 'mr_version'
 
 module SpecHelpers
+  class PendingSpecification < StandardError
+    def message
+      "specification not implemented"      
+    end
+  end
+
+  def pending
+    raise PendingSpecification
+  end
 end
 
 Bacon::Context.send :include, SpecHelpers

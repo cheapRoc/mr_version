@@ -7,4 +7,6 @@ module MrVersion
   # VERSION = new PATH.join('version.yml').read.strip
   VERSION = '0.0.1'
 
+  require LIBPATH.join('mr_version', 'version')
+
 end
