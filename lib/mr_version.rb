@@ -8,5 +8,6 @@ module MrVersion
   VERSION = '0.0.1'
 
   require LIBPATH.join('mr_version', 'version')
+  require LIBPATH.join('mr_version', 'number')
 
 end

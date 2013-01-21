@@ -1,27 +1,6 @@
 
 module MrVersion
 
-  class Number < String
-
-    attr_reader :number
-
-    def initialize(__number=nil)
-      @__number = __number.to_i
-      super self.to_s
-    end
-
-    def to_s
-      __number.to_s
-    end
-
-    protected
-
-    def __number
-      @__number ||= 0
-    end
-
-  end
-
   class Version < String
 
     DEFAULT_FORMAT = /^(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)$/
