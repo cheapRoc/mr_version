@@ -9,7 +9,7 @@ module MrVersion
     end
 
     def ==(value)
-      self.to_i == value
+      to_i == value
     end
 
     def to_i

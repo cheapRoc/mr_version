@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "bacon"
   s.add_development_dependency "facon"
   s.add_development_dependency "simple_cov"
-  s.add_development_dependency "autotest"
+  s.add_development_dependency "autotest-standalone"
   s.add_development_dependency "autotest-fsevent"
 
   s.description = <<-DESC

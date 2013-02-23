@@ -30,14 +30,16 @@ Examples
 
     require 'mr_version'
 
-    version = Version.new Rails.root.join('version.yml')
+    Version = MrVersion.new Rails.root.join('version.yml')
 
-    Version.number == "2.0.3"
-    Version.append << "rel_"
-    Version.prepend << " by cheapRoc"
-    Version.major == '2'
-    Version.minor == '0'
-    Version.patch == '3'
+    Version.append = "rel"
+    Version.append << "_"
+    Version.prepend = " by cheapRoc"
+    Version.major = '2'
+    Version.minor = '0'
+    Version.patch = '3'
+    Version.number == '2.0.3'
+    Version.to_s == 'rel_2.0.3 by cheapRoc'
     Version.patch.increment == '4'
     Version.number == "2.0.4"
     Version.info == "rel_2.0.4 by cheapRoc"
