@@ -18,7 +18,7 @@ require 'mr_version'
 module SpecHelpers
   class PendingSpecification < StandardError
     def message
-      "specification not implemented"      
+      "specification not implemented"
     end
   end
 

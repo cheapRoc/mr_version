@@ -3,32 +3,34 @@ module MrVersion
 
   class Version < String
 
-    DEFAULT_FORMAT = /^(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)$/
+    FORMAT   = /^(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)$/
+    TEMPLATE = "%s.%s.%s"
+
+    attr_accessor :template, :format, :parts
 
     def initialize(__version=nil)
-      case __version
-      when String
-        @__version = __version
-        parse_string
-      end
-
-      super self
+      @__version = __version || '0.0.0'
+      super self.parse.to_s
     end
 
-    def major
-      @major ||= Number.new
+    def to_s
+      template % __versions
     end
 
-    def minor
-      @minor ||= Number.new
-    end
-
-    def patch
-      @patch ||= Number.new
+    def template
+      @template ||= TEMPLATE
     end
 
     def format
-      @format ||= DEFAULT_FORMAT
+      @format ||= FORMAT
+    end
+
+    def template=(template)
+      @template = template
+    end
+
+    def format=(format)
+      parse.format if @format = format
     end
 
     protected
@@ -37,14 +39,37 @@ module MrVersion
       @__version
     end
 
-    def parse_string
-      format.match(__version) do |match|
+    def __versions
+      format_parts.map { |part| send part }
+    end
+
+    def format_parts
+      format.names.map(&:to_sym)
+    end
+
+    def parse_parts
+      if parts && parts != format_parts
+        parts.each { |part| undef part }
+      end
+
+      (parts = format_parts).each do |part|
+        self.class.send :define_method, part do
+          instance_variable_get("@#{part}") ||
+            instance_variable_set("@#{part}", Number.new)
+        end
+      end
+
+      self
+    end
+
+    def parse
+      parse_parts.format.match(__version) do |match|
         match.names.each do |name|
           instance_variable_set "@#{name}", Number.new(match[name])
         end
       end
+
+      self
     end
-
   end
-
 end
