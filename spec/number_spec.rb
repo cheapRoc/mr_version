@@ -8,6 +8,10 @@ describe MrVersion::Number do
     @number = MrVersion::Number.new 1
   end
 
+  it 'compares to integer' do
+    @number.should.equal 1
+  end
+
   it 'is a kind of string' do
     @number.to_s.should.be.kind_of String
   end
