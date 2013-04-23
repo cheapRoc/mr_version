@@ -34,6 +34,7 @@ describe MrVersion::Number do
     version = MrVersion::Version.new "2.0.0"
     version.should.equal '2.0.0'
     version.major.decrement
+    version.major.should.equal 1
     version.should.equal '1.0.0'
   end
 

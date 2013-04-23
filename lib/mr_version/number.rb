@@ -4,8 +4,6 @@ module MrVersion
 
     attr_reader :value
 
-    attr_accessor :version
-
     def initialize(value=nil, version=nil)
       @value, @version = value.to_i, version
     end
@@ -23,22 +21,30 @@ module MrVersion
     end
 
     def increment
-      value = to_i + 1
-      version && version.parse
-      value
+      self.value = to_i + 1
+      version && version.to_s
+      self.value
     end
 
     def decrement
-      value = to_i - 1
-      value = 0 if value < 0
-      version && version.parse
-      value
+      self.value = to_i - 1
+      self.value = 0 if self.value < 0
+      version && version.to_s
+      self.value
     end
 
     protected
 
+    def value=(val)
+      @value = val
+    end
+
     def value
       @value ||= 0
+    end
+
+    def version
+      @version
     end
 
   end
