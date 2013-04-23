@@ -1,9 +1,10 @@
 mr_version
 ===========
 
-Mr. Version is a simple Ruby library for versioning applications or libraries.
+Mr. Version is a simple Ruby library for encapsulating version numbers in your applications
+or libraries.
 
-It encapsulates a simple API for incrementing and decrementing version numbers so you can add
+It presents a simple API for incrementing and decrementing version numbers so you can add
 them to Thor/Rake tasks, Capistrano deployments or any other Ruby code.
 
 Why?
@@ -11,19 +12,20 @@ Why?
 
 The philosphy behind MrVersion is that maintaining and updating version numbers shouldn't be
 a burden of your Ruby applications and libraries, or your developers. You shouldn't have to
-think twice about when to increment your version, how to or where.
+think twice about when to increment your version, how to or where. And you damn well shouldn't
+have to manually change constants buried inside of your library.
 
-The default setup for this library tracks software based on Semantic Versioning. We don't think
-this is the end all, be all of version numbers but its a good baseline assumption. Eventually
-we'll provide customization to change how your version number is formatted.
+The default setup for this library tracks software based on [Semantic Versioning](https://github.com/mojombo/semver/blob/master/semver.md). We don't think
+this is the end all, be all of version numbers but its a good baseline assumption. I'm baking
+customization in so you can change how your version number is parsed and formatted.
 
 Features
 --------
 
-* Automatically increment version numbers during deployments
 * Access version number via version object in your application
-* Marshalls to simple YAML file for persistance
-* Supports Git tagging during increment/decrement
+* Helps automatically increment version numbers during deployments
+* **SOON** Marshalls to simple YAML file for persistance
+* **SOON** Supports Git tagging during increment/decrement
 
 Examples
 --------
