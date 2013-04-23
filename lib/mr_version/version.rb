@@ -27,6 +27,7 @@ module MrVersion
     def to_s
       [prepend, template % numbers, append].delete_if(&:empty?).join ' '
     end
+    alias :info :to_s
 
     def append
       @append ||= ''

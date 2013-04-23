@@ -73,6 +73,19 @@ describe MrVersion::Version do
       @version = MrVersion::Version.new '1.2.3'
     end
 
+    it "has a string" do
+      @version.to_s.should.equal @version.number
+    end
+
+    it "aliased to info" do
+      @version.info.should.equal @version.to_s
+    end
+
+    it "isn't the same as number" do
+      @version.append = "Software"
+      @version.number.should.not.equal @version.to_s
+    end
+
     it "appends a string" do
       @version.append = "Software"
       @version.to_s.should.equal "1.2.3 Software"
