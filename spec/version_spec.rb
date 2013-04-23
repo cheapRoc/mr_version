@@ -28,6 +28,13 @@ describe MrVersion::Version do
     it 'has a patch number of "3"' do
       @version.patch.should.equal number(3)
     end
+
+    it 'decrements "1.2.3" to "0.2.3"' do
+      @version.major.decrement
+      @version.major.should.equal 0
+      @version.should.equal '0.2.3'
+      @version.number.should.equal '0.2.3'
+    end
   end
 
   describe "changing format" do
@@ -43,6 +50,34 @@ describe MrVersion::Version do
       @version.format = format = /^(?<dude>[0-9]*)\.0\-0\.(?<rug>[0-9]*)$/
       @version.dude.should.equal number(12)
       @version.rug.should.equal number(1)
+    end
+  end
+
+  describe "as string" do
+    before do
+      @version = MrVersion::Version.new '1.2.3'
+    end
+
+    it "appends a string" do
+      @version.append = "Software"
+      @version.to_s.should.equal "1.2.3 Software"
+    end
+
+    it "appends the append" do
+      @version.append = "Software"
+      @version.append << " Doodoo"
+      @version.to_s.should.equal "1.2.3 Software Doodoo"
+    end
+
+    it "prepends a string" do
+      @version.prepend = "Dude"
+      @version.to_s.should.equal "Dude 1.2.3"
+    end
+
+    it "prepends a string" do
+      @version.prepend = "Dude"
+      @version.prepend << " Another"
+      @version.to_s.should.equal "Dude Another 1.2.3"
     end
   end
 

@@ -5,17 +5,36 @@ module MrVersion
     FORMAT   = /^(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)$/
     TEMPLATE = "%s.%s.%s"
 
-    attr_accessor :template, :format, :parts
+    attr_accessor :append, :prepend, :template, :format, :parts
 
     def initialize(__version=nil)
-      @__version = __version || '0.0.0'
-      super self.parse.to_s
+      case __version
+      # when Pathname, File
+      #   @__version = YAML.parse(__version.read)
+      when String
+        @__version = __version
+      else
+        @__version = '0.0.0'
+      end
+
+      super parse.number
+    end
+
+    def number
+      replace template % numbers
     end
 
     def to_s
-      replace template % numbers
+      [prepend, template % numbers, append].delete_if(&:empty?).join ' '
     end
-    alias :number :to_s
+
+    def append
+      @append ||= ''
+    end
+
+    def prepend
+      @prepend ||= ''
+    end
 
     def template
       @template ||= TEMPLATE

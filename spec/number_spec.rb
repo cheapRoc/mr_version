@@ -12,7 +12,7 @@ describe MrVersion::Number do
     @number.to_s.should.be.kind_of String
   end
 
-  it 'is a kind of string' do
+  it 'is a kind of integer' do
     @number.to_i.should.be.kind_of Integer
   end
 
@@ -28,14 +28,6 @@ describe MrVersion::Number do
   it 'decrements to "0" if already "0"' do
     @number = MrVersion::Number.new 0
     @number.decrement.should.be.zero
-  end
-
-  it 'decrements "2.0.0" to "1.0.0"' do
-    version = MrVersion::Version.new "2.0.0"
-    version.should.equal '2.0.0'
-    version.major.decrement
-    version.major.should.equal 1
-    version.should.equal '1.0.0'
   end
 
 end

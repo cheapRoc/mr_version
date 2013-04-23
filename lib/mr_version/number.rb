@@ -22,14 +22,14 @@ module MrVersion
 
     def increment
       self.value = to_i + 1
-      version && version.to_s
+      version && version.number
       self.value
     end
 
     def decrement
       self.value = to_i - 1
       self.value = 0 if self.value < 0
-      version && version.to_s
+      version && version.number
       self.value
     end
 
