@@ -12,24 +12,39 @@ describe MrVersion::Version do
     MrVersion::Version.new.should.equal '0.0.0'
   end
 
-  describe 'for "1.2.3"' do
+  describe 'by string' do
     before do
       @version = MrVersion::Version.new '1.2.3'
     end
 
-    it 'has a major number of "1"' do
+    it 'has a major number' do
       @version.major.should.equal number(1)
     end
 
-    it 'has a minor number of "2"' do
+    it 'has a minor number' do
       @version.minor.should.equal number(2)
     end
 
-    it 'has a patch number of "3"' do
+    it 'has a patch number' do
       @version.patch.should.equal number(3)
     end
 
-    it 'decrements "1.2.3" to "0.2.3"' do
+    it 'sets a major number' do
+      @version.major = 2
+      @version.major.should.equal number(2)
+    end
+
+    it 'sets a minor number' do
+      @version.minor = 3
+      @version.minor.should.equal number(3)
+    end
+
+    it 'sets a patch number' do
+      @version.patch = 5
+      @version.patch.should.equal number(5)
+    end
+
+    it 'decrements major number of "1.2.3" to "0.2.3"' do
       @version.major.decrement
       @version.major.should.equal 0
       @version.should.equal '0.2.3'

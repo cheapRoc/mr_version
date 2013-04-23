@@ -90,6 +90,10 @@ module MrVersion
             instance_variable_get("@#{part}") ||
               instance_variable_set("@#{part}", Number.new(0, self))
           end
+
+          self.class.send :define_method, "#{part}=" do |number|
+            instance_variable_set("@#{part}", Number.new(number, self))
+          end
         end
       end
 
