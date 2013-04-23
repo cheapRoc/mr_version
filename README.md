@@ -37,9 +37,9 @@ Examples
     Version.append = "rel"
     Version.append << "_"
     Version.prepend = " by cheapRoc"
-    Version.major = '2'
-    Version.minor = '0'
-    Version.patch = '3'
+    Version.major = 2
+    Version.minor = 0
+    Version.patch = 3
     Version.number == '2.0.3'
     Version.to_s == 'rel_2.0.3 by cheapRoc'
     Version.patch.increment == '4'
