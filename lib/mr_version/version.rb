@@ -13,8 +13,9 @@ module MrVersion
     end
 
     def to_s
-      replace(template % numbers)
+      replace template % numbers
     end
+    alias :number :to_s
 
     def template
       @template ||= TEMPLATE
