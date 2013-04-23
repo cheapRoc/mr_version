@@ -77,23 +77,23 @@ module MrVersion
     end
 
     def parse_parts
-      if parts != format_parts
-        if parts
-          parts.each do |part|
-            instance_variable_set("@#{part}", nil)
-            undef part
-          end
+      return self unless parts != format_parts
+
+      if parts
+        parts.each do |part|
+          instance_variable_set("@#{part}", nil)
+          undef part
+        end
+      end
+
+      (parts = format_parts).each do |part|
+        self.class.send :define_method, part do
+          instance_variable_get("@#{part}") ||
+            instance_variable_set("@#{part}", Number.new(0, self))
         end
 
-        (parts = format_parts).each do |part|
-          self.class.send :define_method, part do
-            instance_variable_get("@#{part}") ||
-              instance_variable_set("@#{part}", Number.new(0, self))
-          end
-
-          self.class.send :define_method, "#{part}=" do |number|
-            instance_variable_set("@#{part}", Number.new(number, self))
-          end
+        self.class.send :define_method, "#{part}=" do |number|
+          instance_variable_set("@#{part}", Number.new(number, self))
         end
       end
 
