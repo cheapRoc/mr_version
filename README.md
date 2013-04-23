@@ -22,29 +22,33 @@ customization in so you can change how your version number is parsed and formatt
 Features
 --------
 
-* Access version number via version object in your application
-* Helps automatically increment version numbers during deployments
-* **SOON** Marshalls to simple YAML file for persistance
-* **SOON** Supports Git tagging during increment/decrement
+* Access version number via version object in your application.
+* Helps automatically increment version numbers during deployments.
+* **SOON** Support custom parser expression and format string.
+* **SOON** Marshall to simple YAML file for persistance.
+* **SOON** Support Git tagging during increment/decrement.
 
 Examples
 --------
 
     require 'mr_version'
 
-    Version = MrVersion.new Rails.root.join('version.yml')
+    version = MrVersion::Version.new '1.0.2'
 
-    Version.append = "rel"
-    Version.append << "_"
-    Version.prepend = " by cheapRoc"
-    Version.major = 2
-    Version.minor = 0
-    Version.patch = 3
-    Version.number == '2.0.3'
-    Version.to_s == 'rel_2.0.3 by cheapRoc'
-    Version.patch.increment == '4'
-    Version.number == "2.0.4"
-    Version.info == "rel_2.0.4 by cheapRoc"
+    version.major == 1
+    version.minor == 0
+    version.patch == 2
+    version.append = "rel"
+    version.append << "_"
+    version.prepend = " by cheapRoc"
+    version.major = 2
+    version.minor = 0
+    version.patch = 3
+    version.number == '2.0.3'
+    version.to_s == 'rel_2.0.3 by cheapRoc'
+    version.patch.increment == '4'
+    version.number == "2.0.4"
+    version.info == "rel_2.0.4 by cheapRoc"
 
 Install
 -------
